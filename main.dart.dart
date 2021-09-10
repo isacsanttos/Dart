@@ -1,60 +1,81 @@
-class alimento {
-  
- dynamic codigo;
- String  nome;
- String nomeEmIngles;
- String nomeCientifico;
- String grupo;
-  
-  alimento(this.codigo ,this.nome,this.nomeEmIngles,this.nomeCientifico,this.grupo);
-    
-   }
 
- void main(){
-   
-   stdout.write("codigo?");
-  var codigo = stdin.readLineSync();
-     
-    stdout.write("nome?");
-  var nome = stdin.readLineSync();
-     
-     stdout.write("nomeEmIngles?");
-  var nomeEmIngles = stdin.readLineSync();
-     
-  stdout.write("nomeCientifico?");
-  var nomeCientifico = stdin.readLineSync();
-     
+import 'dart:io';
+
+class Alimento {
+  dynamic codigo;
+  String nome;
+  String nomeEmIngles;
+  String nomeCientifico;
+  String grupo;
+
+  Alimento(this.codigo, this.nome, this.nomeEmIngles, this.nomeCientifico, this.grupo);
+}
+
+List<Alimento> alimento1 = [];
+
+cadastro() {
+  stdout.write("codigo?");
+  var codigop = stdin.readLineSync();
+  String codigo = codigop.toString();
+
+  stdout.write("nome?");
+  var nomep = stdin.readLineSync();
+  String nome = nomep.toString();
+
+  stdout.write("cientifico?");
+  var nomeEmInglesp = stdin.readLineSync();
+  String nomeEmIngles = nomeEmInglesp.toString();
+
+  stdout.write("ingles?");
+  var nomeCientificop = stdin.readLineSync();
+  String nomeCientifico = nomeCientificop.toString();
+
   stdout.write("grupo?");
-  var grupo = stdin.readLineSync();
-   
-   alimento Alimento = alimento("C0001C","abacate","Avocado pulp raw","Persea americana Mill","Frutas e derivados");
-    print(Alimento.codigo);
-    print(Alimento.nome);
-    print(Alimento.nomeEmIngles);
-    print(Alimento.nomeCientifico);
-    print(Alimento.grupo);
-   
-   
-   List<String> codigo = ["código","C0401C"];
-   print(codigo);
-   
-    List<String> nome = ["abacate"];
-   print(nome);
-   
-    List<String> nomeEmIngles = ["Avocado pulp raw"];
-   print(nomeEmIngles);
-   
-    List<String> nomeCientifico = ["Persea americana Mill"];
-   print(nomeCientifico);
-   
-    List<String> grupo = ["Frutas e derivados"];
-   print(grupo);
-   
- 
-  
-   
- 
-   
-   
- }
+  var grupop = stdin.readLineSync();
+  String grupo = grupop.toString();
 
+  alimento1.add(Alimento(codigo, nome, nomeEmIngles, nomeCientifico, grupo));
+}
+
+enquanto() {
+  stdout.write("Deseja cadastra um item?  sim ou nao?");
+  var reposta1 = stdin.readLineSync();
+
+  while (reposta1 == "sim") {
+    cadastro();
+    stdout.write("deseja realizar um novo cadastro?");
+    reposta1 = stdin.readLineSync();
+  }
+  verlista();
+}
+
+verlista() {
+  stdout.write("Deseja ver as lista de Alimentos?  sim ou nao?");
+  var reposta2 = stdin.readLineSync();
+  if (reposta2 == "sim") {
+    for (Alimento p in alimento1) {
+      print("Codigo: " +
+          p.codigo +
+          " , nome: " +
+          p.nome +
+          " , nome cientifico: " +
+          p.nomeEmIngles +
+          " , nome em ingles: " +
+          p.nomeCientifico +
+          " , grupo: " +
+          p.grupo);
+    }
+    print('');
+    stdout.write("deseja realizar um novo cadastro?");
+    var reposta3 = stdin.readLineSync();
+    if (reposta3 == "sim") {
+      enquanto();
+    } else {
+      print("ok");
+    }
+  }
+}
+
+void main() {
+  enquanto();
+}
