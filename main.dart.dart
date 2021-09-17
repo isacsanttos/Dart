@@ -2,7 +2,7 @@
 import 'dart:io';
 
 class Alimento {
-  dynamic codigo;
+  String codigo;
   String nome;
   String nomeEmIngles;
   String nomeCientifico;
